@@ -6,14 +6,10 @@ entity Profile{
     video1 Blob,
     video2 Blob,
     backgroundChecked Boolean,
-    review Review,
+    
     created Instant required,
     updated Instant required,
-    languages Language required,
-    award Award,
-    experience Experience required,
-    level Level required,
-    location Location required
+    
 }
 
 entity Subject{
@@ -39,10 +35,14 @@ entity Experience{
     description Blob
 }
 
-enum Level{
+enum LevelEnum{
 	BEGINNER,
     INTERMEDIATE,
     ADVANCED
+}
+
+entity Level{
+	name String
 }
 
 entity Review{
@@ -71,12 +71,17 @@ entity Location{
 
 
 
-enum Language {
+enum LanguageEnum {
     ENGLISH, SPANISH, HINDI, MALAYALAM, KANNADA, TELUGU, ORIYA, MARATHI, URDU, PUNJABI
 }
 
+entity Language{
+	language String
+}
 relationship ManyToMany {
 	Profile{subject} to Subject{profile}
+    Profile{language} to Language{profile}
+    Profile{level} to Level{profile}
 }
 
 relationship OneToMany {

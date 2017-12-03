@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Profile.
+    -->
+    <changeSet id="20171203053651-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="profile"
+                                 constraintName="fk_profile_location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+        <addForeignKeyConstraint baseColumnNames="profiles_id"
+                                 baseTableName="profile_subject"
+                                 constraintName="fk_profile_subject_profiles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profile"/>
+        <addForeignKeyConstraint baseColumnNames="subjects_id"
+                                 baseTableName="profile_subject"
+                                 constraintName="fk_profile_subject_subjects_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subject"/>
+        
+        <addForeignKeyConstraint baseColumnNames="profiles_id"
+                                 baseTableName="profile_language"
+                                 constraintName="fk_profile_language_profiles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profile"/>
+        <addForeignKeyConstraint baseColumnNames="languages_id"
+                                 baseTableName="profile_language"
+                                 constraintName="fk_profile_language_languages_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="language"/>
+        
+        <addForeignKeyConstraint baseColumnNames="profiles_id"
+                                 baseTableName="profile_level"
+                                 constraintName="fk_profile_level_profiles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profile"/>
+        <addForeignKeyConstraint baseColumnNames="levels_id"
+                                 baseTableName="profile_level"
+                                 constraintName="fk_profile_level_levels_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="level"/>
+        
+    </changeSet>
+</databaseChangeLog>

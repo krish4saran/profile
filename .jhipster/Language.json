@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "profile",
+            "otherEntityName": "profile",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "language"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "language",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171203053659",
+    "entityTableName": "language",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "profile"
+}
