@@ -1,0 +1,96 @@
+entity Profile{
+ 	userId Long required,
+    description TextBlob required,
+    active Boolean,
+    image ImageBlob,
+    video1 Blob,
+    video2 Blob,
+    backgroundChecked Boolean,
+    review Review,
+    created Instant required,
+    updated Instant required,
+    languages Language required,
+    award Award,
+    experience Experience required,
+    level Level required,
+    location Location required
+}
+
+entity Subject{
+	name String,
+    description String,
+    active Boolean,
+    created Instant,
+    updated Instant
+}
+
+entity Education{
+	course String,
+    university String,
+    start Integer,
+    end Integer
+}
+
+entity Experience{
+	title String required,
+    company String,
+    begin LocalDate required,
+    end LocalDate,
+    description Blob
+}
+
+enum Level{
+	BEGINNER,
+    INTERMEDIATE,
+    ADVANCED
+}
+
+entity Review{
+	rating Integer required,
+    comments TextBlob required,
+    createdDate LocalDate required,
+    //this will be the student providing the review
+    userId Long required
+}
+
+entity Award{
+	name String required,
+    receivedDate LocalDate required,
+    institute String required
+  
+}
+
+/*Location available will be provided by configuration
+* so avoiding constraints for country
+*/
+entity Location{
+	city String required,
+    state String maxlength(2) required,
+    country String maxlength(3) required
+}
+
+
+
+enum Language {
+    ENGLISH, SPANISH, HINDI, MALAYALAM, KANNADA, TELUGU, ORIYA, MARATHI, URDU, PUNJABI
+}
+
+relationship ManyToMany {
+	Profile{subject} to Subject{profile}
+}
+
+relationship OneToMany {
+	Profile{education} to Education,
+    Profile{experience} to Experience,
+    Profile{review} to Review,
+    Profile{award} to Award
+}
+
+relationship OneToOne {
+	Profile{location} to Location
+}
+
+dto * with mapstruct
+service all with serviceImpl
+paginate Profile, Review with pagination
+search Profile with elasticsearch
